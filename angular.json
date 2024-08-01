@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngneat-query-loading-bug": {
+    "pres": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/ngneat-query-loading-bug",
+            "outputPath": "dist/pres",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -33,7 +33,7 @@
             "assets": ["src/favicon.ico", "src/assets", "src/assets/icons", "src/manifest.webmanifest", "src/silent-renew.html"],
             "styles": ["src/global_styles.css"],
             "scripts": [],
-            "ngneat-query-loading-bugerveSymlinks": true
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {
@@ -133,14 +133,14 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
-            "buildTarget": "ngneat-query-loading-bug:build"
+            "buildTarget": "pres:build"
           },
           "configurations": {
             "development": {
-              "buildTarget": "ngneat-query-loading-bug:build:development"
+              "buildTarget": "pres:build:development"
             },
             "production": {
-              "buildTarget": "ngneat-query-loading-bug:build:production"
+              "buildTarget": "pres:build:production"
             }
           },
           "defaultConfiguration": "development"
@@ -148,7 +148,7 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "ngneat-query-loading-bug:build"
+            "buildTarget": "pres:build"
           }
         },
         "test": {
@@ -167,15 +167,15 @@
           }
         },
         "e2e": {
-          "builder": "@cyngneat-query-loading-bugs/schematic:cyngneat-query-loading-bugs",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "ngneat-query-loading-bug:serve",
+            "devServerTarget": "pres:serve",
             "watch": true,
             "headless": true
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngneat-query-loading-bug:serve:production"
+              "devServerTarget": "pres:serve:production"
             }
           }
         }
