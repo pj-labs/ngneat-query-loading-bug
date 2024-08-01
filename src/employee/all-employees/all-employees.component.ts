@@ -2,27 +2,29 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Employee, EmployeeService } from '../../services/employee.service';
 import { RouterLink } from '@angular/router';
-import { initializeState, markLoading, markSuccess } from '@js-smart/ng-kit';
+import { initializeState, markLoading, markSuccess, PrimaryButtonComponent, SpinnerComponent } from '@js-smart/ng-kit';
+import { FormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'app-all-employees',
 	standalone: true,
-	imports: [CommonModule, RouterLink],
+	imports: [CommonModule, RouterLink, FormsModule, SpinnerComponent, PrimaryButtonComponent],
 	template: `
 		<div>
 			<h1>Employees</h1>
 			<hr />
-			@if(loadingState().isLoading) {
-			<p>Loading...</p>
-			} @else {
-			<button (click)="loadData()">Fetch Data</button>
-			}
-
-			<ul *ngFor="let employee of employees">
-				<li>
-					<a [routerLink]="['/employee', employee?.id]">{{ employee.firstName }} {{ employee.lastName }}</a>
-				</li>
-			</ul>
+			<form (ngSubmit)="loadData()">
+				<primary-button
+					type="submit"
+					[loading]="loadingState().isLoading"
+					label="Load Data"
+					loadingLabel="Loading Data..."></primary-button>
+				<ul *ngFor="let employee of employees" class="mt-3">
+					<li>
+						<a [routerLink]="['/employee', employee?.id]">{{ employee.firstName }} {{ employee.lastName }}</a>
+					</li>
+				</ul>
+			</form>
 		</div>
 	`,
 	styles: [],
